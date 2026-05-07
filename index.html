@@ -12,12 +12,13 @@ html, body {
   margin:0;
   padding:0;
   height:100%;
+  font-size:clamp(16px, 0.35vw + 15px, 19px);
   scroll-behavior:smooth;
 }
 
 body {
   font-family:'Montserrat', sans-serif;
-  font-size:clamp(0.92rem, 0.28vw + 0.86rem, 1.02rem);
+  font-size:1rem;
   color:#4b3f3f;
   background:#fdfaf7;
   scroll-snap-type:y mandatory;
@@ -34,10 +35,10 @@ p, a, button, input, select {
   scroll-snap-stop:always;
   display:flex;
   flex-direction:column;
-  justify-content:flex-start;
+  justify-content:center;
   align-items:center;
   text-align:center;
-  padding:30px 20px 50px;
+  padding:50px 20px;
   position:relative;
 }
 
@@ -117,6 +118,8 @@ p, a, button, input, select {
 
 .section.hero {
   background: url('background.png') center/cover no-repeat;
+  justify-content:center;
+  padding:50px 20px;
 }
 
 .hero .content {
@@ -140,6 +143,8 @@ p, a, button, input, select {
 
 .section.hero2 {
   background: url('https://diditarjetas.com/demobasico/_assets/media/c984bf9f27caf42ea3ff1fe92700ceeb.png') center/cover no-repeat;
+  justify-content:center;
+  padding:50px 20px;
 }
 
 .section.hero2::before {
@@ -166,6 +171,36 @@ p, a, button, input, select {
   display:block;
 }
 
+.alias-copy-wrap {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.alias-copy-btn {
+  padding:9px 16px;
+  border-radius:24px;
+  border:1px solid rgba(221,239,226,0.72);
+  background:linear-gradient(135deg, rgba(235,246,238,0.25), rgba(112,146,120,0.88));
+  color:#fff;
+  font-family:'Montserrat', sans-serif;
+  font-size:0.68rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(27,56,35,0.22);
+  transition:transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.alias-copy-btn:hover {
+  transform:translateY(-1px);
+  background:linear-gradient(135deg, rgba(241,250,244,0.35), rgba(95,132,104,0.96));
+  box-shadow:0 10px 24px rgba(27,56,35,0.28);
+}
+
 .cierre-final {
   margin-top:52px;
   padding-top:22px;
@@ -185,6 +220,16 @@ p, a, button, input, select {
 
 .section.confirmar {
   background: rgb(186, 200, 184);
+}
+
+.section.confirmar .content {
+  width:100%;
+  min-height:72vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  padding-top:24px;
 }
 
 .section.confirmar::before {
@@ -335,6 +380,7 @@ h1 {
 
 @media (max-width: 480px) {
   .hero h1 {
+    font-size:clamp(3.1rem, 15.5vw, 5.8rem);
     flex-direction:column;
     gap:0.02em;
     line-height:1;
@@ -348,11 +394,15 @@ h1 {
   }
 }
 
-h2 { font-weight:300; margin:10px 0; }
+h2 {
+  font-weight:300;
+  margin:10px 0;
+  font-size:clamp(1.6rem, 5.8vw, 2.8rem);
+}
 
 .hero h2 {
   font-family:'Cormorant Garamond', serif;
-  font-size:clamp(1.25rem, 4.8vw, 2.2rem);
+  font-size:clamp(1.45rem, 5.6vw, 2.7rem);
   font-style:italic;
   font-weight:500;
   letter-spacing:clamp(0.8px, 0.35vw, 2px);
@@ -460,7 +510,7 @@ input, select {
 
 .mes {
   font-family:'Great Vibes', cursive;
-  font-size:clamp(1.95rem, 6.5vw, 2.5rem);
+  font-size:clamp(2.2rem, 7.3vw, 3rem);
   color:#8c8b5a;
 }
 
@@ -693,6 +743,8 @@ input, select {
 /* seccion ubicacion */
 .section.ubicacion {
   background: url('fondo-ubicacion.png') center/cover no-repeat;
+  justify-content:flex-start;
+  padding-top:42px;
 }
 
 .section.ubicacion::before {
@@ -882,6 +934,11 @@ input, select {
   width:20px;
   height:20px;
   stroke:#fff;
+  transition:transform 0.25s ease;
+}
+
+.next-btn.up svg {
+  transform:rotate(180deg);
 }
 
 .next-btn:hover {
@@ -1009,7 +1066,7 @@ input, select {
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <a class="ubicacion-btn-link salon-btn" href="https://www.google.com/maps?q=Basílica+Nuestra+Señora+de+Luján,+San+Martín+51,+Luján" target="_blank" rel="noopener">Llegar al salón</a>
+        <a class="ubicacion-btn-link salon-btn" href="https://www.google.com/maps/place/hosteria+la+caldera/data=!4m2!3m1!1s0x941bbeccb54a051d:0xc5ee8ece2fec796a?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noopener">Llegar al salón</a>
       </div>
       <div class="ubicacion-btn-row">
         <div class="ubicacion-btn-ico">
@@ -1077,9 +1134,14 @@ input, select {
     <h2 class="mes">A tener en cuenta</h2>
     <p>Su presencia es nuestro mejor regalo, pero si desean hacernos un presente, les agradecemos que sea mediante transferencia bancaria a:</p>
 
-    <p><strong>ALIAS: JYLX4.2026</strong><br>
-    Titular: Lourdes Castaño<br>
-    Banco Macro</p>
+    <p>
+      <span class="alias-copy-wrap">
+        <strong>ALIAS: <span id="alias-valor">JYLX4.2026</span></strong>
+        <button class="alias-copy-btn" id="alias-copy-btn" type="button" onclick="copyAlias()">Copiar alias</button>
+      </span><br>
+      Titular: Lourdes Castaño<br>
+      Banco Macro
+    </p>
     <h2 class="mes cierre-final">¡Los esperamos!</h2>
   </div>
 </section>
@@ -1264,14 +1326,21 @@ function updateNextButtonVisibility(){
   if(!nextButton) return;
 
   const sections = document.querySelectorAll('.section');
-  const firstSection = sections[0];
+  if(!sections.length) return;
 
-  if(!firstSection) return;
+  let currentIndex = 0;
+  sections.forEach((sec, i) => {
+    const rect = sec.getBoundingClientRect();
+    if(rect.top >= -10 && rect.top < window.innerHeight / 2){
+      currentIndex = i;
+    }
+  });
 
-  const firstSectionBottom = firstSection.getBoundingClientRect().bottom;
-  const isOnFirstSection = firstSectionBottom > window.innerHeight * 0.5;
+  const isOnFirstSection = currentIndex === 0;
+  const isOnLastSection = currentIndex === sections.length - 1;
 
   nextButton.classList.toggle('hidden', isOnFirstSection);
+  nextButton.classList.toggle('up', isOnLastSection);
 }
 
 const fades = document.querySelectorAll('.fade');
@@ -1304,6 +1373,31 @@ function enviarWhatsApp(){
   const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
   window.open(url, '_blank');
 }
+
+async function copyAlias(){
+  const aliasEl = document.getElementById('alias-valor');
+  const copyBtn = document.getElementById('alias-copy-btn');
+  if(!aliasEl || !copyBtn) return;
+
+  const alias = aliasEl.textContent.trim();
+
+  try {
+    await navigator.clipboard.writeText(alias);
+  } catch (_) {
+    const temp = document.createElement('textarea');
+    temp.value = alias;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand('copy');
+    document.body.removeChild(temp);
+  }
+
+  const original = copyBtn.textContent;
+  copyBtn.textContent = 'Copiado';
+  setTimeout(() => {
+    copyBtn.textContent = original;
+  }, 1400);
+}
 </script>
 
 
@@ -1316,6 +1410,14 @@ function enviarWhatsApp(){
 <script>
 function nextSection(){
   const sections = document.querySelectorAll('.section');
+  const nextButton = document.getElementById('next-btn');
+  if(!sections.length) return;
+
+  if(nextButton && nextButton.classList.contains('up')){
+    sections[0].scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
   let index = 0;
 
   sections.forEach((sec, i)=>{
