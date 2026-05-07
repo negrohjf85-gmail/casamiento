@@ -17,10 +17,15 @@ html, body {
 
 body {
   font-family:'Montserrat', sans-serif;
+  font-size:clamp(0.92rem, 0.28vw + 0.86rem, 1.02rem);
   color:#4b3f3f;
   background:#fdfaf7;
   scroll-snap-type:y mandatory;
   overflow-y:scroll;
+}
+
+p, a, button, input, select {
+  font-size:inherit;
 }
 
 .section {
@@ -29,10 +34,10 @@ body {
   scroll-snap-stop:always;
   display:flex;
   flex-direction:column;
-  justify-content:center;
+  justify-content:flex-start;
   align-items:center;
   text-align:center;
-  padding:50px 20px;
+  padding:30px 20px 50px;
   position:relative;
 }
 
@@ -297,7 +302,7 @@ body {
 
 h1 {
   font-family:'Great Vibes', cursive;
-  font-size:4rem;
+  font-size:clamp(2.3rem, 10vw, 4rem);
   margin:0;
   color:white;
   font-weight: normal;
@@ -347,10 +352,10 @@ h2 { font-weight:300; margin:10px 0; }
 
 .hero h2 {
   font-family:'Cormorant Garamond', serif;
-  font-size:2.2rem;
+  font-size:clamp(1.25rem, 4.8vw, 2.2rem);
   font-style:italic;
   font-weight:500;
-  letter-spacing:2px;
+  letter-spacing:clamp(0.8px, 0.35vw, 2px);
   margin-top:20px;
   color:white;
   text-transform:uppercase;
@@ -455,7 +460,7 @@ input, select {
 
 .mes {
   font-family:'Great Vibes', cursive;
-  font-size:2.5rem;
+  font-size:clamp(1.95rem, 6.5vw, 2.5rem);
   color:#8c8b5a;
 }
 
@@ -476,17 +481,17 @@ input, select {
 
 .te-esperamos {
   font-family:'Great Vibes', cursive;
-  font-size:2rem;
+  font-size:clamp(1.5rem, 5.2vw, 2rem);
   color:#4b3f3f;
   margin:0 0 6px 0;
 }
 
 .fecha-grande {
   font-family:'Quiche Sans', 'Montserrat', sans-serif;
-  font-size:4.5rem;
+  font-size:clamp(2.45rem, 11vw, 4.5rem);
   font-weight:800;
   color:#708a6b;
-  letter-spacing:4px;
+  letter-spacing:clamp(1.5px, 0.8vw, 4px);
   margin:0 0 4px 0;
   line-height:1;
 }
@@ -508,7 +513,7 @@ input, select {
   margin:0 auto 24px;
   color:#2f2a2a;
   font-family:'Cormorant Garamond', serif;
-  font-size:2rem;
+  font-size:clamp(1.15rem, 4.2vw, 2rem);
   font-weight:500;
   line-height:1.35;
   letter-spacing:0.4px;
@@ -594,7 +599,7 @@ input, select {
 
 .countdown-value {
   display:block;
-  font-size:3.1rem;
+  font-size:clamp(1.7rem, 7vw, 3.1rem);
   line-height:1;
   font-family:'Quiche Sans', 'Montserrat', sans-serif;
 }
