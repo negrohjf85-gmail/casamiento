@@ -38,8 +38,14 @@ p, a, button, input, select {
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:clamp(40px, 5vh, 80px) 20px;
+  padding:20px;
   position:relative;
+}
+
+@media (max-width:768px) {
+  .section {
+    padding:40px 20px;
+  }
 }
 
 .section.alt {
@@ -72,8 +78,6 @@ p, a, button, input, select {
   align-items:center;
   justify-content:center;
   gap:8px;
-  min-height:auto;
-  transform:none;
 }
 
 .recepcion-block {
@@ -224,11 +228,11 @@ p, a, button, input, select {
 
 .section.confirmar .content {
   width:100%;
+  max-width:600px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  min-height:auto;
 }
 
 .section.confirmar::before {
@@ -744,6 +748,13 @@ input, select {
   background: url('fondo-ubicacion.png') center/cover no-repeat;
   justify-content:center;
   align-items:center;
+  padding:20px;
+}
+
+@media (max-width:768px) {
+  .section.ubicacion {
+    padding:40px 20px;
+  }
 }
 
 .section.ubicacion::before {
@@ -1272,8 +1283,6 @@ if(heroBackground.complete){
 }
 
 function startExperience(){
-  playBackgroundMusic();
-  updateMusicToggle();
   const nextSection = document.querySelectorAll('.section')[1];
   if(nextSection){
     nextSection.scrollIntoView({ behavior: 'smooth' });
@@ -1282,21 +1291,9 @@ function startExperience(){
 
 async function playBackgroundMusic(){
   music.muted = false;
-
-  if(music.src !== musicSrc){
-    music.src = musicSrc;
-    music.load();
-  }
-
   try {
     await music.play();
-  } catch (_) {
-    try {
-      music.load();
-      await music.play();
-    } catch (_) {}
-  }
-
+  } catch (_) {}
   updateMusicToggle();
 }
 
@@ -1316,12 +1313,11 @@ function updateMusicToggle(){
 
 function toggleMusic(){
   if(music.paused){
-    music.currentTime = 0;
-    playBackgroundMusic();
+    music.play().catch(() => {});
   } else {
     music.pause();
-    updateMusicToggle();
   }
+  updateMusicToggle();
 }
 
 function updateCountdown(){
@@ -1344,18 +1340,6 @@ function updateCountdown(){
 updateMusicToggle();
 updateCountdown();
 setInterval(updateCountdown, 1000);
-
-window.addEventListener('load', () => {
-  playBackgroundMusic();
-});
-
-function unlockAudioOnFirstInteraction(){
-  playBackgroundMusic();
-}
-
-document.addEventListener('click', unlockAudioOnFirstInteraction, { once:true });
-document.addEventListener('touchstart', unlockAudioOnFirstInteraction, { once:true });
-document.addEventListener('keydown', unlockAudioOnFirstInteraction, { once:true });
 
 function updateNextButtonVisibility(){
   const nextButton = document.getElementById('next-btn');
