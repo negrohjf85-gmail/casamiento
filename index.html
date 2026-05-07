@@ -38,7 +38,7 @@ p, a, button, input, select {
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:50px 20px;
+  padding:clamp(40px, 5vh, 80px) 20px;
   position:relative;
 }
 
@@ -72,8 +72,8 @@ p, a, button, input, select {
   align-items:center;
   justify-content:center;
   gap:8px;
-  min-height:72vh;
-  transform:translateY(-22px);
+  min-height:auto;
+  transform:none;
 }
 
 .recepcion-block {
@@ -224,12 +224,11 @@ p, a, button, input, select {
 
 .section.confirmar .content {
   width:100%;
-  min-height:72vh;
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:flex-start;
-  padding-top:24px;
+  justify-content:center;
+  min-height:auto;
 }
 
 .section.confirmar::before {
@@ -743,8 +742,8 @@ input, select {
 /* seccion ubicacion */
 .section.ubicacion {
   background: url('fondo-ubicacion.png') center/cover no-repeat;
-  justify-content:flex-start;
-  padding-top:42px;
+  justify-content:center;
+  align-items:center;
 }
 
 .section.ubicacion::before {
@@ -957,6 +956,46 @@ input, select {
   transform:translateY(10px);
 }
 
+/* boton musica flotante */
+.music-btn-fixed {
+  position:fixed;
+  bottom:24px;
+  left:24px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:1px solid rgba(221,239,226,0.72);
+  background:linear-gradient(135deg, rgba(235,246,238,0.25), rgba(112,146,120,0.88));
+  color:#fff;
+  font-size:0;
+  cursor:pointer;
+  z-index:999;
+  box-shadow:0 10px 30px rgba(27,56,35,0.28);
+  backdrop-filter:blur(3px);
+  transition:opacity 0.3s ease, transform 0.3s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.music-btn-fixed svg {
+  width:22px;
+  height:22px;
+  stroke:#fff;
+  fill:none;
+  transition:transform 0.25s ease;
+}
+
+.music-btn-fixed:hover {
+  background:linear-gradient(135deg, rgba(241,250,244,0.35), rgba(95,132,104,0.96));
+  box-shadow:0 14px 34px rgba(27,56,35,0.34);
+  transform:translateY(-2px) scale(1.05);
+}
+
+.music-btn-fixed:active {
+  transform:translateY(0) scale(0.98);
+}
+
 </style>
 </head>
 <body>
@@ -984,9 +1023,6 @@ input, select {
   <div class="content fade">
     <p class="countdown-intro">Si recibiste esta invitación es porque queremos que estés con nosotros en uno de los días más importantes de nuestras vidas, tu presencia haría este momento aún más especial.</p>
     <div class="countdown-row">
-      <button class="music-toggle" id="music-toggle" onclick="toggleMusic()" title="Click: play/pausa" aria-label="Pausar música">
-        <span id="music-icon">⏸</span>
-      </button>
       <div class="countdown-bar">
       <div class="countdown-grid">
         <div class="countdown-item">
@@ -1153,8 +1189,6 @@ const heroBackground = new Image();
 const heroTitle = document.getElementById('hero-title');
 const heroSubtitle = document.getElementById('hero-subtitle');
 const heroButton = document.getElementById('hero-button');
-const musicToggle = document.getElementById('music-toggle');
-const musicIcon = document.getElementById('music-icon');
 const cdDays = document.getElementById('cd-days');
 const cdHours = document.getElementById('cd-hours');
 const cdMinutes = document.getElementById('cd-minutes');
@@ -1267,14 +1301,16 @@ async function playBackgroundMusic(){
 }
 
 function updateMusicToggle(){
-  if(!musicToggle || !musicIcon) return;
+  const musicBtnFixed = document.getElementById('music-btn-fixed');
+  const musicIconSvg = document.getElementById('music-icon-svg');
+  if(!musicBtnFixed || !musicIconSvg) return;
 
   if(music.paused){
-    musicIcon.textContent = '▶';
-    musicToggle.setAttribute('aria-label', 'Reproducir música');
+    musicIconSvg.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor" opacity="0.4"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.26 2.5-4.02z" fill="currentColor" opacity="0.4"/><line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>';
+    musicBtnFixed.setAttribute('aria-label', 'Reproducir música');
   } else {
-    musicIcon.textContent = '⏸';
-    musicToggle.setAttribute('aria-label', 'Pausar música');
+    musicIconSvg.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.26 2.5-4.02z" fill="currentColor"/><path d="M19 12c0-3.53-2.04-6.58-5-8.06" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>';
+    musicBtnFixed.setAttribute('aria-label', 'Pausar música');
   }
 }
 
@@ -1400,6 +1436,14 @@ async function copyAlias(){
 }
 </script>
 
+
+<button class="music-btn-fixed" id="music-btn-fixed" onclick="toggleMusic()" title="Activar/Desactivar música" aria-label="Pausar música">
+  <svg id="music-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/>
+    <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.26 2.5-4.02z" fill="currentColor"/>
+    <path d="M19 12c0-3.53-2.04-6.58-5-8.06" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+  </svg>
+</button>
 
 <button class="next-btn hidden" id="next-btn" onclick="nextSection()">
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
