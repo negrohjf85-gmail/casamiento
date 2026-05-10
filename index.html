@@ -39,6 +39,7 @@ p, a, button, input, select {
   align-items:center;
   text-align:center;
   position:relative;
+  padding-top: 0 !important;
 }
 
 @media (max-width:768px) {
@@ -137,7 +138,6 @@ p, a, button, input, select {
 .section.hero {
   background: url('background.png') center/cover no-repeat;
   justify-content:center;
-  padding:50px 20px;
 }
 
 .hero .content {
@@ -1081,7 +1081,7 @@ input, select {
 <body>
 
 <audio id="music" loop autoplay preload="auto" playsinline>
-  <source src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Fur_Elise.ogg" type="audio/ogg">
+  <source src="./Fur_Elise.ogg" type="audio/ogg">
 </audio>
 
 <section class="section hero">
@@ -1182,7 +1182,7 @@ input, select {
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <a class="ubicacion-btn-link salon-btn" href="https://www.google.com/maps/place/hosteria+la+caldera/data=!4m2!3m1!1s0x941bbeccb54a051d:0xc5ee8ece2fec796a?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noopener">Llegar al salón</a>
+        <a class="ubicacion-btn-link salon-btn" href="https://www.google.com/maps/place/hosteria+la+caldera/data=!4m2!3m1!1s0x941bbeccb54a051d:0xc5ee8ece2fec796a?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noopener">Ubicación</a>
       </div>
       <div class="ubicacion-btn-row">
         <div class="ubicacion-btn-ico">
@@ -1239,7 +1239,7 @@ input, select {
         <path d="M20 33.5L28.8 42L45 24.5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
-    <h2 class="mes">Confirma asistencia</h2>    
+    <h2 class="mes">Confirmar Asistencia</h2>    
     <p class="confirmar-texto">Es muy importante para nosotros que nos confirmes si podrás acompañarnos en este día tan especial.</p>
     <p class="confirmar-fecha">Por favor, confirmá tu asistencia antes del 12/05/26</p>
 
@@ -1290,7 +1290,7 @@ const invitadosNombreEl = document.getElementById('invitados-nombre');
 const invitadosMensajeEl = document.getElementById('invitados-mensaje');
 const invitadosExtraEl = document.getElementById('invitados-extra');
 const invitadosListaEl = document.getElementById('invitados-lista');
-const musicSrc = 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Fur_Elise.ogg';
+const musicSrc = './Fur_Elise.ogg';
 let heroShown = false;
 let heroTitleAnimated = false;
 
