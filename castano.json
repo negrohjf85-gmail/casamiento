@@ -1,8 +1,13 @@
 {
-  "nombre": "Fidel Castaño",
-  "mensaje": "¡Qué alegría compartir con vos!",
+  "nombre": "Fidel",
+  "mensaje": "¡Qué alegría compartir con vos papá!",
   "cantidadMaxima": 1,
-  "mesa": "12",
-  "codigo": "A-103",
-  "invitados": []
+  "mesa": "",
+  "codigo": "",
+  "invitados": [
+    {
+      "nombre": "Fidel",
+      "apellido": "Castaño"
+    }
+  ]
 }

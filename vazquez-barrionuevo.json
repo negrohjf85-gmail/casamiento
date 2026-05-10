@@ -1,0 +1,17 @@
+{
+  "nombre": "Gise y Exe",
+  "mensaje": "¡Qué alegría compartir con Uds. dos!",
+  "cantidadMaxima": 2,
+  "mesa": "",
+  "codigo": "",
+  "invitados": [
+    {
+      "nombre": "Gisela",
+      "apellido": "Vázquez"
+    },
+    {
+      "nombre": "Exequiel",
+      "apellido": "Barrionuevo"
+    }
+  ]
+}

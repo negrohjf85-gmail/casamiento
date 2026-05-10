@@ -1,0 +1,13 @@
+{
+  "nombre": "Maldi",
+  "mensaje": "¡Qué alegría compartir con vos mamá!",
+  "cantidadMaxima": 1,
+  "mesa": "",
+  "codigo": "",
+  "invitados": [
+    {
+      "nombre": "Selva",
+      "apellido": "Oropeza"
+    }
+  ]
+}

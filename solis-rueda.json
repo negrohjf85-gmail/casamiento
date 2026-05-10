@@ -1,0 +1,17 @@
+{
+  "nombre": "Lisa y Rodrigo",
+  "mensaje": "¡Qué alegría compartir con ustedes amigos!",
+  "cantidadMaxima": 2,
+  "mesa": "",
+  "codigo": "",
+  "invitados": [
+    {
+      "nombre": "Lisa",
+      "apellido": "Rueda"
+    },
+    {
+      "nombre": "Rodrigo",
+      "apellido": "Solis"
+    }
+  ]
+}
