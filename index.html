@@ -105,6 +105,14 @@ p, a, button, input, select {
 
 .section.alt.dresscode .mes {
   font-size:2.5rem;
+  margin-top:40px;
+  margin-bottom:4px;
+}
+
+.section.alt.dresscode .dresscode-text {
+  margin-top:0;
+  margin-bottom:0;
+  letter-spacing:3px;
 }
 
 .recepcion-text {
@@ -1204,7 +1212,7 @@ input, select {
     </div>
 
     <h2 class="mes">Dress Code</h2>
-    <p style="letter-spacing:3px;">Formal Relajado</p>
+    <p class="dresscode-text">Elegante Sport</p>
     
   </div>
 </section>
@@ -1236,11 +1244,11 @@ input, select {
     <p class="confirmar-fecha">Por favor, confirmá tu asistencia antes del 12/05/26</p>
 
     <div class="confirmar-botones">
-      <a class="confirmar-btn" href="https://api.whatsapp.com/send/?phone=543875924712&text=Hola%2C+que+felicidad%21%21%21%2C+gracias+por+la+invitaci%C3%B3n%2C+ah%C3%AD+estar%C3%A9%EF%BF%BD%EF%BF%BD&type=phone_number&app_absent=0" target="_blank" rel="noopener">
+      <a class="confirmar-btn" href="https://api.whatsapp.com/send/?phone=543875924712" target="_blank" rel="noopener" onclick="return sendConfirmacionWhatsApp(event, '543875924712')">
         <svg viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.84-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.31.2-.58.07-.27-.14-1.13-.42-2.16-1.33-.8-.71-1.34-1.58-1.5-1.85-.16-.27-.02-.42.12-.56.12-.12.27-.31.41-.47.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.47-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.46-.61-.47h-.52c-.18 0-.47.07-.72.34-.25.27-.95.93-.95 2.28s.97 2.65 1.11 2.83c.14.18 1.9 2.9 4.61 4.07.65.28 1.16.45 1.55.58.65.21 1.24.18 1.7.11.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.06-.11-.24-.18-.5-.31z"/><path d="M16.01 3.2C9.06 3.2 3.42 8.83 3.42 15.79c0 2.2.58 4.36 1.68 6.25L3.2 28.8l6.93-1.82a12.55 12.55 0 0 0 5.88 1.5h.01c6.95 0 12.59-5.63 12.59-12.59S22.97 3.2 16.01 3.2zm0 22.95h-.01a10.4 10.4 0 0 1-5.29-1.45l-.38-.23-4.11 1.08 1.1-4.01-.25-.41a10.34 10.34 0 0 1-1.59-5.35c0-5.73 4.67-10.4 10.42-10.4 2.78 0 5.39 1.08 7.36 3.04a10.34 10.34 0 0 1 3.06 7.36c0 5.74-4.68 10.41-10.41 10.41z"/></svg>
         Lourdes
       </a>
-      <a class="confirmar-btn" href="https://api.whatsapp.com/send/?phone=543875896876&text=Hola%2C+que+felicidad%21%21%21%2C+gracias+por+la+invitaci%C3%B3n%2C+ah%C3%AD+estar%C3%A9%EF%BF%BD%EF%BF%BD&type=phone_number&app_absent=0" target="_blank" rel="noopener">
+      <a class="confirmar-btn" href="https://api.whatsapp.com/send/?phone=543875896876" target="_blank" rel="noopener" onclick="return sendConfirmacionWhatsApp(event, '543875896876')">
         <svg viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.24c-.27-.14-1.6-.79-1.84-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.31.2-.58.07-.27-.14-1.13-.42-2.16-1.33-.8-.71-1.34-1.58-1.5-1.85-.16-.27-.02-.42.12-.56.12-.12.27-.31.41-.47.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.47-.07-.14-.61-1.47-.84-2.02-.22-.53-.44-.46-.61-.47h-.52c-.18 0-.47.07-.72.34-.25.27-.95.93-.95 2.28s.97 2.65 1.11 2.83c.14.18 1.9 2.9 4.61 4.07.65.28 1.16.45 1.55.58.65.21 1.24.18 1.7.11.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.06-.11-.24-.18-.5-.31z"/><path d="M16.01 3.2C9.06 3.2 3.42 8.83 3.42 15.79c0 2.2.58 4.36 1.68 6.25L3.2 28.8l6.93-1.82a12.55 12.55 0 0 0 5.88 1.5h.01c6.95 0 12.59-5.63 12.59-12.59S22.97 3.2 16.01 3.2zm0 22.95h-.01a10.4 10.4 0 0 1-5.29-1.45l-.38-.23-4.11 1.08 1.1-4.01-.25-.41a10.34 10.34 0 0 1-1.59-5.35c0-5.73 4.67-10.4 10.42-10.4 2.78 0 5.39 1.08 7.36 3.04a10.34 10.34 0 0 1 3.06 7.36c0 5.74-4.68 10.41-10.41 10.41z"/></svg>
         Javier
       </a>
@@ -1541,6 +1549,30 @@ function enviarWhatsApp(){
 
   const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
   window.open(url, '_blank');
+}
+
+function getListadoInvitadosWhatsapp(){
+  const items = Array.from(document.querySelectorAll('#invitados-lista li'))
+    .map((li) => li.textContent.trim())
+    .filter(Boolean);
+
+  if(!items.length){
+    return '- (completar nombres y apellidos)';
+  }
+
+  return items.map((nombre) => `- ${nombre}`).join('\n');
+}
+
+function sendConfirmacionWhatsApp(event, phone){
+  if(event) event.preventDefault();
+
+  const mensajeBase = 'Hola, qué felicidad!!! Gracias por la invitación, ahí estaré.';
+  const listado = getListadoInvitadosWhatsapp();
+  const mensaje = `${mensajeBase}\n\nListado de invitados:\n${listado}`;
+
+  const url = `https://api.whatsapp.com/send/?phone=${phone}&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`;
+  window.open(url, '_blank');
+  return false;
 }
 
 async function copyAlias(){
