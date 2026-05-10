@@ -1,0 +1,21 @@
+{
+  "nombre": "Familia Castaño Fernández",
+  "mensaje": "¡Qué alegría compartir este día con ustedes!",
+  "cantidadMaxima": 3,
+  "mesa": "",
+  "codigo": "",
+  "invitados": [
+    {
+      "nombre": "Juan",
+      "apellido": "Castaño"
+    },
+    {
+      "nombre": "Camila",
+      "apellido": "Fernández"
+    },
+    {
+      "nombre": "Felipe",
+      "apellido": "Castaño"
+    }
+  ]
+}

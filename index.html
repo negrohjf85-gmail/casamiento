@@ -42,9 +42,15 @@ p, a, button, input, select {
 }
 
 @media (max-width:768px) {
-  /* .section {
-    padding:40px 20px;
-  } */
+  .section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .content {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 .section.alt {
@@ -222,6 +228,63 @@ p, a, button, input, select {
 
 .section.confirmar {
   background: rgb(186, 200, 184);
+}
+
+.section.invitados {
+  background: rgb(236, 241, 232);
+}
+
+.section.invitados::before {
+  background: rgba(255,255,255,0.8);
+}
+
+.invitados-card {
+  background: rgba(255,255,255,0.62);
+  border: 1px solid rgba(112,138,107,0.22);
+  border-radius: 22px;
+  padding: 28px 22px;
+  box-shadow: 0 10px 30px rgba(27,56,35,0.12);
+  backdrop-filter: blur(5px);
+  max-width: 560px;
+  width: min(92vw, 560px);
+}
+
+.invitados-kicker {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  font-size: 0.72rem;
+  color: #6b7960;
+}
+
+.invitados-mensaje {
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
+
+.invitados-extra {
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+  color: #5a6651;
+  letter-spacing: 0.3px;
+}
+
+.invitados-lista {
+  margin: 14px auto 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  width: min(92vw, 460px);
+}
+
+.invitados-lista li {
+  background: rgba(112,138,107,0.09);
+  border: 1px solid rgba(112,138,107,0.18);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  color: #3f4939;
 }
 
 .section.confirmar .content {
@@ -758,7 +821,7 @@ input, select {
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(255,255,255,0.78);
+  background: rgba(0,0,0,0.28);
   z-index:0;
 }
 
@@ -1145,6 +1208,19 @@ input, select {
   </div>
 </section>
 
+<!-- INVITADOS -->
+<section class="section invitados">
+  <div class="content fade">
+    <div class="invitados-card">
+      <p class="invitados-kicker">Invitación para</p>
+      <h2 class="mes" id="invitados-nombre">Nuestros invitados</h2>
+      <p class="invitados-mensaje" id="invitados-mensaje">Si abriste este enlace con tu código de invitado, acá verás tus datos personalizados.</p>
+      <p class="invitados-extra" id="invitados-extra"></p>
+      <ul class="invitados-lista" id="invitados-lista"></ul>
+    </div>
+  </div>
+</section>
+
 <!-- CONFIRMAR ASISTENCIA -->
 <section class="section confirmar">
   <div class="content fade">
@@ -1201,6 +1277,10 @@ const cdDays = document.getElementById('cd-days');
 const cdHours = document.getElementById('cd-hours');
 const cdMinutes = document.getElementById('cd-minutes');
 const cdSeconds = document.getElementById('cd-seconds');
+const invitadosNombreEl = document.getElementById('invitados-nombre');
+const invitadosMensajeEl = document.getElementById('invitados-mensaje');
+const invitadosExtraEl = document.getElementById('invitados-extra');
+const invitadosListaEl = document.getElementById('invitados-lista');
 const musicSrc = 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Fur_Elise.ogg';
 let heroShown = false;
 let heroTitleAnimated = false;
@@ -1334,9 +1414,80 @@ function updateCountdown(){
   if(cdSeconds) cdSeconds.textContent = String(seconds).padStart(2, '0');
 }
 
+function renderInvitadoData(data, id){
+  if(!invitadosNombreEl || !invitadosMensajeEl || !invitadosExtraEl || !invitadosListaEl) return;
+
+  const nombre = data.nombre || data.invitado || data.familia || `Invitado ${id}`;
+  const mensaje = data.mensaje || '¡Nos alegra mucho que seas parte de este día!';
+
+  invitadosNombreEl.textContent = nombre;
+  invitadosMensajeEl.textContent = mensaje;
+
+  const detalles = [];
+  if(data.cantidadMaxima) detalles.push(`Pases: ${data.cantidadMaxima}`);
+  if(data.mesa) detalles.push(`Mesa: ${data.mesa}`);
+  if(data.codigo) detalles.push(`Código: ${data.codigo}`);
+
+  invitadosExtraEl.textContent = detalles.join(' · ');
+
+  invitadosListaEl.innerHTML = '';
+  if(Array.isArray(data.invitados) && data.invitados.length){
+    data.invitados.forEach((inv) => {
+      const li = document.createElement('li');
+      const apellido = (inv?.apellido || '').trim();
+      const nombreInvitado = (inv?.nombre || '').trim();
+
+      if(apellido && nombreInvitado){
+        li.textContent = `${apellido}, ${nombreInvitado}`;
+      } else {
+        li.textContent = apellido || nombreInvitado || 'Invitado';
+      }
+
+      invitadosListaEl.appendChild(li);
+    });
+  }
+}
+
+async function loadInvitadoFromUrl(){
+  if(!invitadosNombreEl || !invitadosMensajeEl || !invitadosExtraEl || !invitadosListaEl) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const rawId = params.get('id');
+
+  if(!rawId){
+    invitadosMensajeEl.textContent = 'Agregá ?id=nombre-del-json en la URL para cargar datos personalizados de invitados.';
+    invitadosExtraEl.textContent = '';
+    invitadosListaEl.innerHTML = '';
+    return;
+  }
+
+  const id = rawId.trim().toLowerCase();
+  if(!/^[a-z0-9_-]+$/.test(id)){
+    invitadosNombreEl.textContent = 'Invitado';
+    invitadosMensajeEl.textContent = 'El id de invitado no es válido.';
+    invitadosExtraEl.textContent = '';
+    invitadosListaEl.innerHTML = '';
+    return;
+  }
+
+  try {
+    const response = await fetch(`${id}.json`, { cache: 'no-store' });
+    if(!response.ok) throw new Error('No encontrado');
+
+    const data = await response.json();
+    renderInvitadoData(data, id);
+  } catch (_) {
+    invitadosNombreEl.textContent = 'Invitado';
+    invitadosMensajeEl.textContent = `No se encontró el archivo ${id}.json.`;
+    invitadosExtraEl.textContent = '';
+    invitadosListaEl.innerHTML = '';
+  }
+}
+
 updateMusicToggle();
 updateCountdown();
 setInterval(updateCountdown, 1000);
+loadInvitadoFromUrl();
 
 function updateNextButtonVisibility(){
   const nextButton = document.getElementById('next-btn');

@@ -1,0 +1,25 @@
+{
+  "nombre": "Familia Gimenez",
+  "mensaje": "¡Qué alegría compartir este día con ustedes!",
+  "cantidadMaxima": 4,
+  "mesa": "12",
+  "codigo": "A-103",
+  "invitados": [
+    {
+      "nombre": "Daniel",
+      "apellido": "Gimenez"
+    },
+    {
+      "nombre": "Soledad",
+      "apellido": "Romero"
+    },
+    {
+      "nombre": "Rocío",
+      "apellido": "Gimenez"
+    },
+    {
+      "nombre": "Nazareno",
+      "apellido": "Gimenez"
+    }
+  ]
+}
