@@ -1080,8 +1080,8 @@ input, select {
 </head>
 <body>
 
-<audio id="music" loop autoplay preload="auto" playsinline>
-  <source src="./Fur_Elise.ogg" type="audio/ogg">
+<audio id="music" loop autoplay preload="auto" playsinline muted>
+  <source src="./thankyou.ogg" type="audio/ogg">
 </audio>
 
 <section class="section hero">
@@ -1290,13 +1290,16 @@ const invitadosNombreEl = document.getElementById('invitados-nombre');
 const invitadosMensajeEl = document.getElementById('invitados-mensaje');
 const invitadosExtraEl = document.getElementById('invitados-extra');
 const invitadosListaEl = document.getElementById('invitados-lista');
-const musicSrc = './Fur_Elise.ogg';
+const musicSrc = './thankyou.ogg';
 let heroShown = false;
 let heroTitleAnimated = false;
+let audioUnlocked = false;
 
 music.src = musicSrc;
 music.volume = 0.6;
+music.muted = true;
 music.load();
+music.play().catch(() => {});
 
 function prepareHeroTitle(){
   const text = heroTitle.dataset.text;
@@ -1369,6 +1372,7 @@ if(heroBackground.complete){
 }
 
 function startExperience(){
+  playBackgroundMusic();
   const nextSection = document.querySelectorAll('.section')[1];
   if(nextSection){
     nextSection.scrollIntoView({ behavior: 'smooth' });
@@ -1376,6 +1380,12 @@ function startExperience(){
 }
 
 async function playBackgroundMusic(){
+  if(audioUnlocked && !music.paused && !music.muted){
+    updateMusicToggle();
+    return;
+  }
+
+  audioUnlocked = true;
   music.muted = false;
   try {
     await music.play();
@@ -1388,7 +1398,7 @@ function updateMusicToggle(){
   const musicIconSvg = document.getElementById('music-icon-svg');
   if(!musicBtnFixed || !musicIconSvg) return;
 
-  if(music.paused){
+  if(music.paused || music.muted){
     musicIconSvg.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor" opacity="0.4"/><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.26 2.5-4.02z" fill="currentColor" opacity="0.4"/><line x1="3" y1="3" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.4"/>';
     musicBtnFixed.setAttribute('aria-label', 'Reproducir música');
   } else {
@@ -1398,13 +1408,19 @@ function updateMusicToggle(){
 }
 
 function toggleMusic(){
-  if(music.paused){
+  if(music.paused || music.muted){
+    audioUnlocked = true;
+    music.muted = false;
     music.play().catch(() => {});
   } else {
     music.pause();
   }
   updateMusicToggle();
 }
+
+window.addEventListener('pointerdown', playBackgroundMusic, { once:true });
+window.addEventListener('keydown', playBackgroundMusic, { once:true });
+window.addEventListener('touchstart', playBackgroundMusic, { once:true });
 
 function updateCountdown(){
   const target = new Date('2026-05-23T00:00:00');
