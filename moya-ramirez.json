@@ -1,0 +1,17 @@
+{
+  "nombre": "Gaby y Leo",
+  "mensaje": "¡Qué alegría compartir este día con ustedes!",
+  "cantidadMaxima": 2,
+  "mesa": "",
+  "codigo": "",
+  "invitados": [
+    {
+      "nombre": "Gabriela",
+      "apellido": "Ramirez"
+    },
+    {
+      "nombre": "Leonardo",
+      "apellido": "Moya"
+    }
+  ]
+}
